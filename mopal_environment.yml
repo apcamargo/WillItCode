@@ -1,0 +1,13 @@
+name: mopal
+
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.6
+  - numpy=1.13
+  - biopython=1.72
+  - xgboost=0.72.1
+  - hmmer=3.2.1
