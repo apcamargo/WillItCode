@@ -16,16 +16,16 @@ def main(fasta_file, classification_model_file, hex_table_file, output_features,
      prediction_proba, prediction_label) = classify_fasta(fasta_file, hex_table,
                                                           classification_model,
                                                           hmmer_cpu=hmmer_cpu)
-    if output_features == 'no':
-        columns = 'sequence_id\tprediction'
-        matrix = np.column_stack((sequence_id_list, prediction_label))
-    else:
+    if output_features:
         columns = ('sequence_id\torf_integrity\trecord_log_sequence_length\tlog_orf_length\t'
                    'orf_ratio\tfickett_score\tgc_content\tgc_skew\thexamer_bias\t'
                    'hexamer_bias_distance\tprotein_pi\tsnr\thmmer_score\tcoding_probability\t'
                    'prediction')
         matrix = np.column_stack((sequence_id_list, feature_matrix, prediction_proba,
                                   prediction_label))
+    else:
+        columns = 'sequence_id\tcoding_probability\tprediction'
+        matrix = np.column_stack((sequence_id_list, prediction_proba, prediction_label))
     if output_file is None:
         print(columns)
         for row in matrix:
@@ -47,9 +47,8 @@ if __name__ == "__main__":
     parser.add_argument('hex_table_file',
                         help='Hexamer frequency table file.')
     parser.add_argument('--output_features',
-                        choices=['yes', 'no'],
-                        default='no',
-                        help='Output computed features and the coding probability.')
+                        action='store_true',
+                        help='Output computed features probability.')
     parser.add_argument('--output_file',
                         help='Save output to a file. If not set, the output will be printed on the screen.')
     parser.add_argument('--hmmer_cpu',
