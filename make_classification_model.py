@@ -13,14 +13,17 @@ def main(coding_file, noncoding_file, hex_table_file, hmmer_cpu, output_file):
         pickle.dump(classification_model, output)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description='Train a classification model from training data and saves it into a file.'
-    )
-    parser.add_argument('coding_file', help='FASTA file containing complete sequences of protein-coding transcripts.')
-    parser.add_argument('noncoding_file', help='FASTA file containing complete sequences of noncoding transcripts.')
-    parser.add_argument('hex_table_file', help='Hexamer frequency table file.')
-    parser.add_argument('output_file', help='Output file containing the classification model.')
-    parser.add_argument('--hmmer_cpu', default=1, help='Number of parallel CPU to use for multithreads in HMMER.')
+    parser = argparse.ArgumentParser(description='Train a classification model from training data and saves it into a file.')
+    parser.add_argument('coding_file',
+                        help='FASTA file containing complete sequences of protein-coding transcripts.')
+    parser.add_argument('noncoding_file',
+                        help='FASTA file containing complete sequences of noncoding transcripts.')
+    parser.add_argument('hex_table_file',
+                        help='Hexamer frequency table file.')
+    parser.add_argument('output_file',
+                        help='Output file containing the classification model.')
+    parser.add_argument('--hmmer_cpu',
+                        default=1, help='Number of parallel CPU to use for multithreads in HMMER.')
     if len(sys.argv) < 2:
         parser.print_help()
         sys.exit(1)

@@ -7,13 +7,15 @@ import numpy as np
 from mopalmodules.classifier import classify_fasta
 
 
-def main(fasta_file, classification_model_file, hex_table_file, output_features, output_file, hmmer_cpu):
+def main(fasta_file, classification_model_file, hex_table_file, output_features,
+         output_file, hmmer_cpu):
     """Classify sequences from a input FASTA file."""
     classification_model = pickle.load(open(classification_model_file, 'rb'))
     hex_table = pickle.load(open(hex_table_file, 'rb'))
     (sequence_id_list, feature_matrix,
      prediction_proba, prediction_label) = classify_fasta(fasta_file, hex_table,
-                                                          classification_model, hmmer_cpu=hmmer_cpu)
+                                                          classification_model,
+                                                          hmmer_cpu=hmmer_cpu)
     if output_features == 'no':
         columns = 'sequence_id\tprediction'
         matrix = np.column_stack((sequence_id_list, prediction_label))
@@ -22,7 +24,8 @@ def main(fasta_file, classification_model_file, hex_table_file, output_features,
                    'orf_ratio\tfickett_score\tgc_content\tgc_skew\thexamer_bias\t'
                    'hexamer_bias_distance\tprotein_pi\tsnr\thmmer_score\tcoding_probability\t'
                    'prediction')
-        matrix = np.column_stack((sequence_id_list, feature_matrix, prediction_proba, prediction_label))
+        matrix = np.column_stack((sequence_id_list, feature_matrix, prediction_proba,
+                                  prediction_label))
     if output_file is None:
         print(columns)
         for row in matrix:

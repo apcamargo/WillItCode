@@ -12,12 +12,13 @@ def main(coding_file, noncoding_file, output_file):
         pickle.dump(hex_table, output)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description='Calculate hexamer frequences in coding and noncoding transcripts and save them into a file.'
-    )
-    parser.add_argument('coding_file', help='FASTA file containing CDS sequences of protein-coding transcripts.')
-    parser.add_argument('noncoding_file', help='FASTA file containing complete sequences of noncoding transcripts.')
-    parser.add_argument('output_file', help='Output file containing the hexamer frequency matrix.')
+    parser = argparse.ArgumentParser(description='Calculate hexamer frequences in coding and noncoding transcripts and save them into a file.')
+    parser.add_argument('coding_file',
+                        help='FASTA file containing CDS sequences of protein-coding transcripts.')
+    parser.add_argument('noncoding_file',
+                        help='FASTA file containing complete sequences of noncoding transcripts.')
+    parser.add_argument('output_file',
+                        help='Output file containing the hexamer frequency matrix.')
     if len(sys.argv) < 2:
         parser.print_help()
         sys.exit(1)
