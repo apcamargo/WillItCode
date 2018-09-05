@@ -69,18 +69,18 @@ def get_hexamer_bias(orf_record, hex_table):
     return hexamer_score, hexamer_score_distance
 
 
-def get_hex_frequency_table(coding_file, noncoding_file, win_size=6, step=3):
+def get_hex_frequency_table(cds_fasta, noncoding_fasta, win_size=6, step=3):
     hex_counter_coding = Counter()
     hex_counter_noncoding = Counter()
     hex_freq = OrderedDict({'coding': OrderedDict(), 'noncoding': OrderedDict()})
-    print('* Reading coding sequences.')
-    for sequence in SeqIO.parse(coding_file, 'fasta'):
+    print('* Reading CDS sequences.')
+    for sequence in SeqIO.parse(cds_fasta, 'fasta'):
         if len(sequence) < win_size:
             continue
         hex_counter_coding.update(sliding_window(str(sequence.seq), win_size, step))
     total_hex_coding = sum(hex_counter_coding.values())
     print('* Reading non-coding sequences.')
-    for sequence in SeqIO.parse(noncoding_file, 'fasta'):
+    for sequence in SeqIO.parse(noncoding_fasta, 'fasta'):
         if len(sequence) < win_size:
             continue
         hex_counter_noncoding.update(sliding_window(str(sequence.seq), win_size, step))
