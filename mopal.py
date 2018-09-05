@@ -39,15 +39,22 @@ def main(fasta_file, classification_model_file, hex_table_file, output_features,
                 output.write('\n')
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description='Classify sequences from a input FASTA file.'
-    )
-    parser.add_argument('fasta_file', help='FASTA file containing complete sequences of protein-coding transcripts.')
-    parser.add_argument('classification_model_file', help='FASTA file containing complete sequences of noncoding transcripts.')
-    parser.add_argument('hex_table_file', help='Hexamer frequency table file.')
-    parser.add_argument('--output_features', choices=['yes', 'no'], default='no', help='Output computed features and the coding probability.')
-    parser.add_argument('--output_file', help='Save output to a file. If not set, the output will be printed on the screen.')
-    parser.add_argument('--hmmer_cpu', default=1, help='Number of parallel CPU to use for multithreads in HMMER.')
+    parser = argparse.ArgumentParser(description='Classify sequences from a input FASTA file.')
+    parser.add_argument('fasta_file',
+                        help='FASTA file containing complete sequences of protein-coding transcripts.')
+    parser.add_argument('classification_model_file',
+                        help='FASTA file containing complete sequences of noncoding transcripts.')
+    parser.add_argument('hex_table_file',
+                        help='Hexamer frequency table file.')
+    parser.add_argument('--output_features',
+                        choices=['yes', 'no'],
+                        default='no',
+                        help='Output computed features and the coding probability.')
+    parser.add_argument('--output_file',
+                        help='Save output to a file. If not set, the output will be printed on the screen.')
+    parser.add_argument('--hmmer_cpu',
+                        default=1,
+                        help='Number of parallel CPU to use for multithreads in HMMER.')
     if len(sys.argv) < 2:
         parser.print_help()
         sys.exit(1)
