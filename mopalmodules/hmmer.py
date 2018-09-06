@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 import sys
 
@@ -26,13 +27,7 @@ def get_hmmer(protein_record_list, hmmer_directory_name='tmp_HMMER',
     protein_fasta_path = os.path.join(hmmer_directory_path, protein_fasta)
     pfam_path = os.path.join(complete_path, 'Pfam/Pfam-A.hmm')
     if os.path.isdir(hmmer_directory_path):
-        if os.path.isfile(protein_fasta_path):
-            os.remove(protein_fasta_path)
-        if os.path.isfile(hmmer_output_path):
-            os.remove(hmmer_output_path)
-        if os.path.isfile(hmmer_tbl_output_path):
-            os.remove(hmmer_tbl_output_path)
-        os.rmdir(hmmer_directory_path)
+        shutil.rmtree(hmmer_directory_path)
     os.makedirs(hmmer_directory_path)
     save_protein_fasta(protein_record_list, protein_fasta_path)
     print('* Executing HMMER.')
