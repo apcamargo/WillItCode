@@ -41,9 +41,9 @@ def get_feature_matrix(fasta_file, hex_table, hmmer_cpu=1):
 
 
 def train_classifier(coding_file, noncoding_file, hex_table, hmmer_cpu=1):
-    print('* Computing feature matrix for the coding sequences.')
+    print('* Computing feature matrix of the coding sequences.')
     pc_matrix = get_feature_matrix(coding_file, hex_table, hmmer_cpu=hmmer_cpu)[1]
-    print('* Computing feature matrix for the non-coding sequences.')
+    print('* Computing feature matrix of the non-coding sequences.')
     nc_matrix = get_feature_matrix(noncoding_file, hex_table, hmmer_cpu=hmmer_cpu)[1]
     x_train = np.concatenate([pc_matrix, nc_matrix])
     y_train = np.repeat([1, 0], [pc_matrix.shape[0], nc_matrix.shape[0]])
@@ -54,7 +54,7 @@ def train_classifier(coding_file, noncoding_file, hex_table, hmmer_cpu=1):
 
 
 def classify_fasta(fasta_file, hex_table, classification_model, hmmer_cpu=1):
-    print('* Computing feature matrix for the input sequences.')
+    print('* Computing feature matrix of the input sequences.')
     sequence_id_list, feature_matrix = get_feature_matrix(fasta_file, hex_table, hmmer_cpu=hmmer_cpu)
     print('* Classifying the input sequences.')
     prediction_proba = classification_model.predict_proba(feature_matrix)[:, 1]
