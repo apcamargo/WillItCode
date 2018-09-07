@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import xgboost as xgb
 from Bio import SeqIO
@@ -12,6 +14,7 @@ from mopalmodules.snr import get_snr
 
 
 def get_feature_matrix(fasta_file, hex_table, hmmer_cpu=1):
+    fasta_file_basename = os.path.basename(fasta_file)
     protein_record_list = []
     sequence_features_list = []
     sequence_id_list = []
@@ -34,7 +37,7 @@ def get_feature_matrix(fasta_file, hex_table, hmmer_cpu=1):
                                        record_protein_pi, record_snr])
     sequence_features_list = np.array(sequence_features_list)
     hmmer_feature_array = get_hmmer(protein_record_list,
-                                    hmmer_directory_name=fasta_file+'.HMMER',
+                                    hmmer_directory_name=fasta_file_basename+'.HMMER',
                                     n_cpu=hmmer_cpu)
     feature_matrix = np.column_stack((sequence_features_list, hmmer_feature_array))
     return np.array(sequence_id_list), feature_matrix
