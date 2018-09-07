@@ -33,7 +33,9 @@ def get_feature_matrix(fasta_file, hex_table, hmmer_cpu=1):
                                        record_hexamer_bias, record_hexamer_bias_distance,
                                        record_protein_pi, record_snr])
     sequence_features_list = np.array(sequence_features_list)
-    hmmer_feature_array = get_hmmer(protein_record_list, n_cpu=hmmer_cpu)
+    hmmer_feature_array = get_hmmer(protein_record_list,
+                                    hmmer_directory_name=fasta_file+'.HMMER',
+                                    n_cpu=hmmer_cpu)
     feature_matrix = np.column_stack((sequence_features_list, hmmer_feature_array))
     return np.array(sequence_id_list), feature_matrix
 

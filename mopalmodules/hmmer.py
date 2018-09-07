@@ -18,11 +18,11 @@ def save_protein_fasta(protein_record_list, protein_fasta_path):
         SeqIO.write(protein_record_list, handle, 'fasta')
 
 
-def get_hmmer(protein_record_list, hmmer_directory_name='tmp_HMMER',
+def get_hmmer(protein_record_list, hmmer_directory_name='tmp.HMMER',
               hmmer_results='hmmscan.tblout', protein_fasta='translated_orfs.fa', n_cpu=1):
     complete_path = get_complete_path()
     hmmer_directory_path = os.path.join(complete_path, hmmer_directory_name)
-    hmmer_output_path = os.path.join(complete_path, hmmer_directory_path, 'temp.out')
+    hmmer_output_path = os.path.join(complete_path, hmmer_directory_path, 'hmmscan.out')
     hmmer_tbl_output_path = os.path.join(complete_path, hmmer_directory_path, hmmer_results)
     protein_fasta_path = os.path.join(hmmer_directory_path, protein_fasta)
     pfam_path = os.path.join(complete_path, 'Pfam/Pfam-A.hmm')
