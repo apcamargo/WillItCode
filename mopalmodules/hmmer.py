@@ -41,8 +41,5 @@ def get_hmmer(protein_record_list, hmmer_directory_name='tmp.HMMER',
             hmmer_score_list.append(hmmer_score_dict[record.id])
         else:
             hmmer_score_list.append(0)
-    os.remove(protein_fasta_path)
-    os.remove(hmmer_output_path)
-    os.remove(hmmer_tbl_output_path)
-    os.rmdir(hmmer_directory_path)
+    shutil.rmtree(hmmer_directory_path)
     return np.array(hmmer_score_list)
