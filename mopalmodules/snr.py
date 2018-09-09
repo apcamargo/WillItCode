@@ -3,6 +3,8 @@ import numpy as np
 
 def get_snr(record):
     sequence_str = str(record.seq.upper())
+    if len(sequence_str) < 3:
+        return 0
     a_fft = np.fft.fft([1 if i == 'A' else 0 for i in sequence_str])
     t_fft = np.fft.fft([1 if i == 'T' else 0 for i in sequence_str])
     c_fft = np.fft.fft([1 if i == 'C' else 0 for i in sequence_str])

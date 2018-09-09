@@ -28,7 +28,7 @@ def get_feature_matrix(fasta_file, hex_table, hmmer_cpu=1):
         record_gc_content, record_gc_skew = get_gc_content(orf_record)
         record_hexamer_bias, record_hexamer_bias_distance = get_hexamer_bias(orf_record, hex_table)
         record_protein_pi = get_protein_pi(protein_record)
-        record_snr = get_snr(record)
+        record_snr = get_snr(orf_record)
         protein_record_list.append(protein_record)
         sequence_features_list.append([orf_integrity, record_log_sequence_length,
                                        record_log_orf_length, record_orf_ratio,
