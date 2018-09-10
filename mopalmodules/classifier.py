@@ -25,14 +25,14 @@ def get_feature_matrix(fasta_file, hex_table, hmmer_cpu=1):
         (record_log_sequence_length, record_log_orf_length,
          record_orf_ratio) = get_lengths(record, orf_record)
         record_fickett_score = get_fickett_score(orf_record)
-        record_gc_content, record_gc_skew = get_gc_content(orf_record)
+        record_gc_content, record_gc_bias = get_gc_content(orf_record)
         record_hexamer_bias, record_hexamer_bias_distance = get_hexamer_bias(orf_record, hex_table)
         record_protein_pi = get_protein_pi(protein_record)
         record_snr = get_snr(orf_record)
         protein_record_list.append(protein_record)
         sequence_features_list.append([orf_integrity, record_log_sequence_length,
                                        record_log_orf_length, record_orf_ratio,
-                                       record_fickett_score, record_gc_content, record_gc_skew,
+                                       record_fickett_score, record_gc_content, record_gc_bias,
                                        record_hexamer_bias, record_hexamer_bias_distance,
                                        record_protein_pi, record_snr])
     sequence_features_list = np.array(sequence_features_list)
