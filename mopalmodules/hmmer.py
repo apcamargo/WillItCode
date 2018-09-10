@@ -42,4 +42,4 @@ def get_hmmer(protein_record_list, hmmer_directory_name='tmp.HMMER',
         else:
             hmmer_score_list.append(0)
     shutil.rmtree(hmmer_directory_path)
-    return np.array(hmmer_score_list)
+    return np.log1p(hmmer_score_list)
