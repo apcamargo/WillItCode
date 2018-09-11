@@ -17,7 +17,7 @@ def main(fasta_file, classification_model_file, hex_table_file, output_features,
                                                           classification_model,
                                                           hmmer_cpu=hmmer_cpu)
     if output_features:
-        columns = ('sequence_id\torf_integrity\trecord_log_sequence_length\tlog_orf_length\t'
+        columns = ('sequence_id\torf_integrity\tlog_sequence_length\tlog_orf_length\t'
                    'orf_ratio\tfickett_score\tgc_content\tgc_bias\thexamer_bias\t'
                    'hexamer_bias_distance\tprotein_pi\tsnr\thmmer_score\tcoding_probability\t'
                    'prediction')

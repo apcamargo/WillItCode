@@ -13,7 +13,7 @@ def main(fasta_file, hex_table_file, output_file, hmmer_cpu):
     print('* Computing feature matrix.')
     sequence_id_list, feature_matrix = get_feature_matrix(fasta_file, hex_table,
                                                           hmmer_cpu=hmmer_cpu)
-    columns = ('sequence_id\torf_integrity\trecord_log_sequence_length\tlog_orf_length\t'
+    columns = ('sequence_id\torf_integrity\tlog_sequence_length\tlog_orf_length\t'
                'orf_ratio\tfickett_score\tgc_content\tgc_bias\thexamer_bias\t'
                'hexamer_bias_distance\tprotein_pi\tsnr\thmmer_score')
     matrix = np.column_stack((sequence_id_list, feature_matrix))
