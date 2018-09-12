@@ -15,7 +15,7 @@ def main(fasta_file, hex_table_file, output_file, hmmer_cpu):
                                                           hmmer_cpu=hmmer_cpu)
     columns = ('sequence_id\torf_integrity\tlog_sequence_length\tlog_orf_length\t'
                'orf_ratio\tfickett_score\tgc_content\tgc_bias\thexamer_bias\t'
-               'hexamer_bias_distance\tprotein_pi\tsnr\thmmer_score')
+               'hexamer_bias_distance\tprotein_pi\tsnr\tlog_hmmer_score')
     matrix = np.column_stack((sequence_id_list, feature_matrix))
     with open(output_file, 'w') as output:
         output.write(columns)
