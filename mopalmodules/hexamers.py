@@ -2,7 +2,6 @@ from collections import Counter, OrderedDict
 from itertools import product
 
 import numpy as np
-from Bio import SeqIO
 
 
 def sliding_window(sequence, win_size, step):
@@ -17,20 +16,6 @@ def sliding_window(sequence, win_size, step):
 def all_possible_kmer(win_size=6):
     for kmer in product(['A', 'T', 'C', 'G'], repeat=win_size):
         yield ''.join(kmer)
-
-
-def kmer_frequency_table(file, win_size=6, step=3):
-    hex_counter = Counter()
-    hex_freq = OrderedDict()
-    for sequence in SeqIO.parse(file, 'fasta'):
-        hex_counter.update(sliding_window(str(sequence.seq), win_size, step))
-    total_hex = sum(hex_counter.values())
-    for kmer in all_possible_kmer(win_size):
-        if kmer in hex_counter:
-            hex_freq[kmer] = hex_counter[kmer]/total_hex
-        else:
-            hex_freq[kmer] = 0
-    return hex_freq
 
 
 def get_hexamer_score(sequence_str, hex_table, win_size=6, step=3):
@@ -69,23 +54,20 @@ def get_hexamer_bias(orf_record, hex_table):
     return hexamer_score, hexamer_score_distance
 
 
-def get_hex_frequency_table(cds_fasta, noncoding_fasta, win_size=6, step=3):
+def get_hex_frequency_table(cds_records, noncoding_records, win_size=6, step=3):
     hex_counter_coding = Counter()
     hex_counter_noncoding = Counter()
     hex_freq = OrderedDict({'coding': OrderedDict(), 'noncoding': OrderedDict()})
-    print('* Reading CDS sequences.')
-    for sequence in SeqIO.parse(cds_fasta, 'fasta'):
+    for sequence in cds_records:
         if len(sequence) < win_size:
             continue
         hex_counter_coding.update(sliding_window(str(sequence.seq), win_size, step))
     total_hex_coding = sum(hex_counter_coding.values())
-    print('* Reading non-coding sequences.')
-    for sequence in SeqIO.parse(noncoding_fasta, 'fasta'):
+    for sequence in noncoding_records:
         if len(sequence) < win_size:
             continue
         hex_counter_noncoding.update(sliding_window(str(sequence.seq), win_size, step))
     total_hex_noncoding = sum(hex_counter_noncoding.values())
-    print('* Computing relative hexamer frequencies.')
     for kmer in all_possible_kmer(win_size):
         if kmer in hex_counter_coding:
             hex_freq['coding'][kmer] = hex_counter_coding[kmer]/total_hex_coding
