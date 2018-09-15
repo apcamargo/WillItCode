@@ -1,8 +1,8 @@
 name: mopal
 
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
   - defaults
 
 dependencies:
