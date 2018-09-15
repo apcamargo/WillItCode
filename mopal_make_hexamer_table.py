@@ -17,13 +17,15 @@ def main(protein_fasta, noncoding_fasta, output_file):
         if len(orf_record) >= 6:
             cds_records.append(orf_record)
     for record in SeqIO.parse(noncoding_fasta, 'fasta'):
-        noncoding_records.append(record)
+        orf_record = get_orf_record(record)[0]
+        if len(orf_record) >= 6:
+            noncoding_records.append(record)
     hex_table = get_hex_frequency_table(cds_records, noncoding_records)
     with open(output_file, 'wb') as output:
         pickle.dump(hex_table, output)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Calculate hexamer frequences in coding and noncoding transcripts and save them into a file.')
+    parser = argparse.ArgumentParser(description='Calculate hexamer frequences in coding and noncoding ORFs and save them into a file.')
     parser.add_argument('protein_fasta',
                         help='FASTA file containing complete sequences of protein-coding transcripts.')
     parser.add_argument('noncoding_fasta',
