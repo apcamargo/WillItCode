@@ -4,19 +4,19 @@ Compute the coding potential of RNA sequences.
 
 ## Overview
 
-WillItCode is tool to classify RNA sequences into protein-coding (mRNA) or non-coding (lncRNA). It computes a series of features that describe the sequence composition and similarity to protein motifs and then classify them using a gradient boosted trees model.
+WillItCode is tool to classify RNA sequences into protein-coding (mRNA) or non-coding (lncRNA). It computes a series of features that describe the sequence composition and the similarity to protein domains and classify the transcripts using a gradient boosted trees model ([XGBoost](https://xgboost.readthedocs.io/)).
 
 ## Preparing the work environment
 
 1. Install the [Conda](https://conda.io/) package and environment manager. This can be achieved by installating [Miniconda](https://conda.io/miniconda.html) or [Anaconda](https://www.anaconda.com/download/#linux).
-2. Create the WillItCode environment: `conda env create -f willitcode_environment.yml`
-3. Activate the WillItCode environment: `source activate willitcode`
+2. Create the WillItCode Conda environment: `conda env create -f willitcode_environment.yml`
+3. Activate the WillItCode Conda environment: `source activate willitcode`
 4. Download the latest version of the [Pfam database](http://pfam.xfam.org/) into the `Pfam` directory and unpack it.
 5. Prepare the HMM database: `hmmpress Pfam-A.hmm`
 
 ## Scripts
 
-WillItCode is comprised of four scripts which performs different functions. All scripts include help messages that can be viewed using the `-h` argument.
+WillItCode is comprised of four scripts which perform different steps of the pipeline. All scripts include help messages that can be viewed using the `-h` argument.
 
 - `willitcode_make_hexamer_table.py`:
   - Outputs a file containing the hexamer frequencies in the ORFs of coding and non-coding transcripts.
@@ -25,8 +25,10 @@ WillItCode is comprised of four scripts which performs different functions. All 
   - Outputs the trained classification model file.
   - Take the two training FASTA files and the hexamer frequency file as input.
 - `willitcode_classify_fasta.py`:
-  - Outputs the classification of the sequences in the target FASTA and (optionally) the values of each feature.
+  - Outputs the classification of the sequences in the target FASTA to the screen.
   - Take the hexamer frequency file, the classification model file and the target FASTA as input.
+  - The `--output_file` argument can be used to write the output into a file.
+  - The `--output_features` argument can be used to output the computed features.
 - `willitcode_make_feature_matrix.py`:
   - Outputs a file containing the values of the features for each sequence in the target FASTA file.
   - Take the hexamer frequency file and the target FASTA as input.
