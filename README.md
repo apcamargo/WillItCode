@@ -3,6 +3,7 @@
 Compute the coding potential of RNA sequences.
 
 ## Overview
+
 WillItCode is tool to classify RNA sequences into protein-coding (mRNA) or non-coding (lncRNA). It computes a series of features that describe the sequence composition and similarity to protein motifs and then classify them using a gradient boosted trees model.
 
 ## Preparing the work environment
@@ -49,3 +50,20 @@ sequence_id	orf_integrity	log_sequence_length	log_orf_length	orf_ratio	fickett_s
 HOTAIR-201	1.0	7.792348924113037	5.7745515455444085	0.1325898389095415	0.9457	60.74766355140187	5.607476635514018	0.07669675570903184	0.14526636980902713	11.83282470703125	0.9328568042965191	0.0	0.05229618772864342	Non-coding
 GAPDH-201	1.0	7.53689712956617	6.9167150203536085	0.5376	1.2926	55.257936507936506	7.142857142857146	0.2934898815462439	0.5006784307968564	8.56610107421875	3.3520498724216043	5.454038241544812	0.9477038383483887	Coding
 ```
+
+## Features
+
+## Features
+
+- `orf_integrity`: Whether a stop codon was found.
+- `log_sequence_length`: Log-transformed transcript length.
+- `log_orf_length`: Log-transformed longest ORF length.
+- `orf_ratio`: Ratio between the longest ORF length and the transcript length.
+- `fickett_score`: Score computed using the ORF nucleotide composition as described by JW Fickett (1982).
+- `gc_content`: GC content of the longest ORF.
+- `gc_bias`: Difference between the largest GC content among the reading frames and the ORF GC content.
+- `hexamer_bias`: Score computed by measusing how similar the transcript's hexamer composition is to the average hexamer composition of mRNAs and lncRNAs.
+- `hexamer_bias_distance`: Average difference between the value of the largest `hexamer_bias` among the reading frames and the values of the other two frames.
+- `protein_pi`: Isoelectric point of the protein translated from the longest ORF.
+- `snr`: A quantification of signal-to-noise ratio in the ORF as described by Pian, Cong, et al. (2016). Uses the Discrete Fourier Transform to detect a period-3 behaviour and then computes how strong is this signal.
+- `log_hmmer_score`: Log-transformed score of the first hit found by `hmmsearch` in the Pfam database. Uses the protein sequence translated from the longest ORF.
