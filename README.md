@@ -4,11 +4,11 @@ Compute the coding potential of RNA sequences.
 
 ## Overview
 
-WillItCode is tool to classify RNA sequences into protein-coding (mRNA) or non-coding (lncRNA). It computes a series of features that describe the sequence composition and the similarity to protein domains and classify the transcripts using a gradient boosted trees model ([XGBoost](https://xgboost.readthedocs.io/)).
+WillItCode is tool to classify RNA sequences into protein-coding (mRNA) or non-coding (lncRNA). It computes a several features that describe sequence composition and similarity to protein domains and uses them to classify the transcripts using gradient boosted trees ([XGBoost](https://xgboost.readthedocs.io/)).
 
 ## Preparing the work environment
 
-1. Install the [Conda](https://conda.io/) package and environment manager. This can be achieved by installating [Miniconda](https://conda.io/miniconda.html) or [Anaconda](https://www.anaconda.com/download/#linux).
+1. Install the [Conda](https://conda.io/) package and environment manager. This can be done by installating [Miniconda](https://conda.io/miniconda.html) or [Anaconda](https://www.anaconda.com/download/#linux).
 2. Create the WillItCode Conda environment: `conda env create -f willitcode_environment.yml`
 3. Activate the WillItCode Conda environment: `source activate willitcode`
 4. Download the latest version of the [Pfam database](http://pfam.xfam.org/) into the `Pfam` directory and unpack it.
@@ -70,4 +70,4 @@ GAPDH-201	1.0	7.53689712956617	6.9167150203536085	0.5376	1.2926	55.2579365079365
 - `hexamer_bias_distance`: Average difference between the value of the largest `hexamer_bias` among the reading frames and the values of the remaining two frames.
 - `protein_pi`: Isoelectric point of the protein translated from the longest ORF.
 - `snr`: The signal-to-noise ratio in the ORF, as described by C. Pian et al. (2016). The Discrete Fourier Transform is used to detect a period-3 peak and then the strength of the signal is computed by taking the ratio between the peak and the average power spectrum of the ORF.
-- `log_hmmer_score`: Log-transformed score of the first hit found by `hmmsearch` in the Pfam database. Uses the protein sequence translated from the longest ORF as the query in the search.
+- `log_hmmer_score`: Log-transformed score of the first hit found by `hmmsearch` in the Pfam database. Uses the protein sequence translated from the longest ORF as the query for the search.
