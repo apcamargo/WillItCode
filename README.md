@@ -53,8 +53,6 @@ GAPDH-201	1.0	7.53689712956617	6.9167150203536085	0.5376	1.2926	55.2579365079365
 
 ## Features
 
-## Features
-
 - `orf_integrity`: Whether a stop codon was found.
 - `log_sequence_length`: Log-transformed transcript length.
 - `log_orf_length`: Log-transformed longest ORF length.
