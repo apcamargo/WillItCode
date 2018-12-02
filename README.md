@@ -8,7 +8,7 @@ WillItCode is tool to classify RNA sequences into protein-coding (mRNA) or non-c
 
 ## Preparing the work environment
 
-1. Install the [Conda](https://conda.io/) package and environment manager. This can be achieved by the installation of [Miniconda](https://conda.io/miniconda.html) or [Anaconda](https://www.anaconda.com/download/#linux).
+1. Install the [Conda](https://conda.io/) package and environment manager. This can be achieved by installating [Miniconda](https://conda.io/miniconda.html) or [Anaconda](https://www.anaconda.com/download/#linux).
 2. Create the WillItCode environment: `conda env create -f willitcode_environment.yml`
 3. Activate the WillItCode environment: `source activate willitcode`
 4. Download the latest version of the [Pfam database](http://pfam.xfam.org/) into the `Pfam` directory and unpack it.
