@@ -4,7 +4,7 @@ import sys
 
 import numpy as np
 
-from mopalmodules.classifier import classify_fasta
+from willitcode.classifier import classify_fasta
 
 
 def main(fasta_file, classification_model_file, hex_table_file, output_features,
