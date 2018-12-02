@@ -28,7 +28,7 @@ WillItCode is comprised of four scripts which perform different steps of the pip
   - Outputs the classification of the sequences in the target FASTA to the screen.
   - Take the hexamer frequency file, the classification model file and the target FASTA as input.
   - The `--output_file` argument can be used to write the output into a file.
-  - The `--output_features` argument can be used to output the computed features.
+  - The `--output_features` argument can be used to output the computed features, in addition to the classification.
 - `willitcode_make_feature_matrix.py`:
   - Outputs a file containing the values of the features for each sequence in the target FASTA file.
   - Take the hexamer frequency file and the target FASTA as input.
