@@ -61,11 +61,11 @@ GAPDH-201	1.0	7.53689712956617	6.9167150203536085	0.5376	1.2926	55.2579365079365
 - `log_sequence_length`: Log-transformed transcript length.
 - `log_orf_length`: Log-transformed longest ORF length.
 - `orf_ratio`: Ratio between the longest ORF length and the transcript length.
-- `fickett_score`: Score computed using the ORF nucleotide composition as described by JW Fickett (1982).
+- `fickett_score`: Score computed using the ORF nucleotide composition, as described by J. W. Fickett (1982).
 - `gc_content`: GC content of the longest ORF.
 - `gc_bias`: Difference between the largest GC content among the reading frames and the ORF GC content.
 - `hexamer_bias`: Score computed by measusing how similar the transcript's hexamer composition is to the average hexamer composition of mRNAs and lncRNAs.
-- `hexamer_bias_distance`: Average difference between the value of the largest `hexamer_bias` among the reading frames and the values of the other two frames.
+- `hexamer_bias_distance`: Average difference between the value of the largest `hexamer_bias` among the reading frames and the values of the remaining two frames.
 - `protein_pi`: Isoelectric point of the protein translated from the longest ORF.
-- `snr`: A quantification of signal-to-noise ratio in the ORF as described by Pian, Cong, et al. (2016). Uses the Discrete Fourier Transform to detect a period-3 behaviour and then computes how strong is this signal.
-- `log_hmmer_score`: Log-transformed score of the first hit found by `hmmsearch` in the Pfam database. Uses the protein sequence translated from the longest ORF.
+- `snr`: The signal-to-noise ratio in the ORF, as described by C. Pian et al. (2016). The Discrete Fourier Transform is used to detect a period-3 peak and then the strength of the signal is computed by taking the ratio between the peak and the average power spectrum of the ORF.
+- `log_hmmer_score`: Log-transformed score of the first hit found by `hmmsearch` in the Pfam database. Uses the protein sequence translated from the longest ORF as the query in the search.
