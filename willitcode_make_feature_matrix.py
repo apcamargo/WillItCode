@@ -4,7 +4,7 @@ import sys
 
 import numpy as np
 
-from mopalmodules.classifier import get_feature_matrix
+from willitcode.classifier import get_feature_matrix
 
 
 def main(fasta_file, hex_table_file, output_file, hmmer_cpu):

@@ -4,8 +4,8 @@ import sys
 
 from Bio import SeqIO
 
-from mopalmodules.hexamers import get_hex_frequency_table
-from mopalmodules.orf import get_orf_record
+from willitcode.hexamers import get_hex_frequency_table
+from willitcode.orf import get_orf_record
 
 
 def main(protein_fasta, noncoding_fasta, output_file):

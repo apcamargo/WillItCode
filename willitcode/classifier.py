@@ -4,13 +4,13 @@ import numpy as np
 import xgboost as xgb
 from Bio import SeqIO
 
-from mopalmodules.fickett import get_fickett_score
-from mopalmodules.gc import get_gc_content
-from mopalmodules.hexamers import get_hexamer_bias
-from mopalmodules.hmmer import get_hmmer
-from mopalmodules.orf import get_lengths, get_orf_record
-from mopalmodules.protein import get_protein_pi, get_protein_record
-from mopalmodules.snr import get_snr
+from willitcode.fickett import get_fickett_score
+from willitcode.gc import get_gc_content
+from willitcode.hexamers import get_hexamer_bias
+from willitcode.hmmer import get_hmmer
+from willitcode.orf import get_lengths, get_orf_record
+from willitcode.protein import get_protein_pi, get_protein_record
+from willitcode.snr import get_snr
 
 
 def get_feature_matrix(fasta_file, hex_table, hmmer_cpu=1):

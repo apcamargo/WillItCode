@@ -2,7 +2,7 @@ import argparse
 import pickle
 import sys
 
-from mopalmodules.classifier import train_classifier
+from willitcode.classifier import train_classifier
 
 
 def main(coding_file, noncoding_file, hex_table_file, hmmer_cpu, output_file):
