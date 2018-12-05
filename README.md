@@ -29,6 +29,7 @@ WillItCode is comprised of four scripts which perform different steps of the pip
   - Take the hexamer frequency file, the classification model file and the target FASTA as input.
   - The `--output_file` argument can be used to write the output into a file.
   - The `--output_features` argument can be used to output the computed features, in addition to the classification.
+  - The `--output_fasta` argument can be used to save the protein sequence of the predicted coding transcripts into a FASTA file.
 - `willitcode_make_feature_matrix.py`:
   - Outputs a file containing the values of the features for each sequence in the target FASTA file.
   - Take the hexamer frequency file and the target FASTA as input.
@@ -46,7 +47,7 @@ $ wget ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam32.0/Pfam-A.hmm.gz &&
 $ cd ../
 $ python willitcode_make_hexamer_table.py ../mRNA_training.fa ../lncRNA_training.fa hexamer_frequencies.pickle
 $ python willitcode_train_classification_model.py --hmmer_cpu 8 ../mRNA_training.fa ../lncRNA_training.fa hexamer_frequencies.pickle model.pickle
-$ python willitcode_classify_fasta.py --output_file classification_result.tsv --output_features --hmmer_cpu 8 ../test_transcripts.fa model.pickle hexamer_frequencies.pickle
+$ python willitcode_classify_fasta.py --output_file classification_result.tsv --output_features --output_fasta predicted_proteins.fa --hmmer_cpu 8 ../test_transcripts.fa model.pickle hexamer_frequencies.pickle
 ```
 
 The ouput of `willitcode_classify_fasta.py` contains the computed features and the classification of each transcript:

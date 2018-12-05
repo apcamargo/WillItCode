@@ -1,9 +1,10 @@
 import os
+from itertools import compress
 
 import numpy as np
+
 import xgboost as xgb
 from Bio import SeqIO
-
 from willitcode.fickett import get_fickett_score
 from willitcode.gc import get_gc_content
 from willitcode.hexamers import get_hexamer_bias
@@ -40,7 +41,7 @@ def get_feature_matrix(fasta_file, hex_table, hmmer_cpu=1):
                                     hmmer_directory_name=fasta_file_basename+'.HMMER',
                                     n_cpu=hmmer_cpu)
     feature_matrix = np.column_stack((sequence_features_list, hmmer_feature_array))
-    return np.array(sequence_id_list), feature_matrix
+    return np.array(sequence_id_list), feature_matrix, protein_record_list
 
 
 def train_classifier(coding_file, noncoding_file, hex_table, hmmer_cpu=1):
@@ -58,8 +59,9 @@ def train_classifier(coding_file, noncoding_file, hex_table, hmmer_cpu=1):
 
 def classify_fasta(fasta_file, hex_table, classification_model, hmmer_cpu=1):
     print('* Computing feature matrix of the input sequences.')
-    sequence_id_list, feature_matrix = get_feature_matrix(fasta_file, hex_table, hmmer_cpu=hmmer_cpu)
+    sequence_id_list, feature_matrix, protein_record_list = get_feature_matrix(fasta_file, hex_table, hmmer_cpu=hmmer_cpu)
     print('* Classifying the input sequences.')
     prediction_proba = classification_model.predict_proba(feature_matrix)[:, 1]
     prediction_label = np.array(['Coding' if i > 0.5 else 'Non-coding' for i in prediction_proba])
-    return sequence_id_list, feature_matrix, prediction_proba, prediction_label
+    coding_protein_record_list = list(compress(protein_record_list, prediction_label=='Coding'))
+    return sequence_id_list, feature_matrix, prediction_proba, prediction_label, coding_protein_record_list
