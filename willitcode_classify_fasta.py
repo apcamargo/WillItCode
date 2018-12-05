@@ -9,7 +9,7 @@ from willitcode.classifier import classify_fasta
 
 
 def main(fasta_file, classification_model_file, hex_table_file, output_features,
-         output_file, hmmer_cpu):
+         output_file, output_fasta, hmmer_cpu):
     """Classify sequences from a input FASTA file."""
     classification_model = pickle.load(open(classification_model_file, 'rb'))
     hex_table = pickle.load(open(hex_table_file, 'rb'))
@@ -39,7 +39,7 @@ def main(fasta_file, classification_model_file, hex_table_file, output_features,
             for row in matrix:
                 output.write('\t'.join(row))
                 output.write('\n')
-    if output_proteins is not None:
+    if output_fasta is not None:
         with open(output_fasta, 'w') as fasta_file:
             SeqIO.write(coding_protein_record_list, fasta_file, 'fasta')
 
