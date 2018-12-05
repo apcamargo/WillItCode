@@ -24,7 +24,7 @@ def main(fasta_file, hex_table_file, output_file, hmmer_cpu):
             output.write('\t'.join(row))
             output.write('\n')
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Classify sequences from a input FASTA file.')
     parser.add_argument('fasta_file',
                         help='FASTA file containing transcript sequences.')

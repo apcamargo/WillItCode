@@ -44,7 +44,7 @@ def main(fasta_file, classification_model_file, hex_table_file, output_features,
             SeqIO.write(coding_protein_record_list, fasta_file, 'fasta')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Classify sequences from a input FASTA file.')
     parser.add_argument('fasta_file',
                         help='FASTA file containing complete sequences of protein-coding transcripts.')

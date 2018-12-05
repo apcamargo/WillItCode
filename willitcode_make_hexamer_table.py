@@ -24,7 +24,7 @@ def main(protein_fasta, noncoding_fasta, output_file):
     with open(output_file, 'wb') as output:
         pickle.dump(hex_table, output)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Calculate hexamer frequences in coding and noncoding ORFs and save them into a file.')
     parser.add_argument('protein_fasta',
                         help='FASTA file containing complete sequences of protein-coding transcripts.')

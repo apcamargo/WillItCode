@@ -12,7 +12,7 @@ def main(coding_file, noncoding_file, hex_table_file, hmmer_cpu, output_file):
     with open(output_file, 'wb') as output:
         pickle.dump(classification_model, output)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train a classification model from training data and saves it into a file.')
     parser.add_argument('coding_file',
                         help='FASTA file containing complete sequences of protein-coding transcripts.')
