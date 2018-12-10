@@ -8,7 +8,7 @@ from willitcode.orf import get_codons
 
 def get_codon_entropy(record):
     sequence_str = str(record.seq.upper())
-    orf_counter = Counter(codon[0] for codon in orf.get_codons(sequence_str))
+    orf_counter = Counter(codon[0] for codon in get_codons(sequence_str))
     total_codon_count = sum(orf_counter.values())
     if total_codon_count <= 1:
         return 1
