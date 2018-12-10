@@ -3,7 +3,7 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 
 
-def get_codons(sequence_str, frame_number):
+def get_codons(sequence_str, frame_number=0):
     coordinate = frame_number
     while coordinate + 3 <= len(sequence_str):
         yield (sequence_str[coordinate:coordinate+3], coordinate)
