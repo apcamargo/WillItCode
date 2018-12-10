@@ -2,9 +2,10 @@ import os
 from itertools import compress
 
 import numpy as np
+from Bio import SeqIO
 
 import xgboost as xgb
-from Bio import SeqIO
+from willitcode.entropy import get_codon_entropy
 from willitcode.fickett import get_fickett_score
 from willitcode.gc import get_gc_content
 from willitcode.hexamers import get_hexamer_bias
@@ -29,13 +30,14 @@ def get_feature_matrix(fasta_file, hex_table, hmmer_cpu=1):
         record_gc_content, record_gc_bias = get_gc_content(orf_record)
         record_hexamer_bias, record_hexamer_bias_distance = get_hexamer_bias(orf_record, hex_table)
         record_protein_pi = get_protein_pi(protein_record)
+        record_codon_entropy = get_codon_entropy(orf_record)
         record_snr = get_snr(orf_record)
         protein_record_list.append(protein_record)
         sequence_features_list.append([orf_integrity, record_log_sequence_length,
                                        record_log_orf_length, record_orf_ratio,
                                        record_fickett_score, record_gc_content, record_gc_bias,
                                        record_hexamer_bias, record_hexamer_bias_distance,
-                                       record_protein_pi, record_snr])
+                                       record_protein_pi, record_codon_entropy, record_snr])
     sequence_features_list = np.array(sequence_features_list)
     hmmer_feature_array = get_hmmer(protein_record_list,
                                     hmmer_directory_name=fasta_file_basename+'.HMMER',
