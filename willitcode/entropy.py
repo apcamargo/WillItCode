@@ -6,7 +6,7 @@ import scipy.stats as ss
 from willitcode.orf import get_codons
 
 
-def get_entropy(record):
+def get_codon_entropy(record):
     sequence_str = str(record.seq.upper())
     orf_counter = Counter(codon[0] for codon in orf.get_codons(sequence_str))
     total_codon_count = sum(orf_counter.values())
