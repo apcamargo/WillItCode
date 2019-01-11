@@ -11,5 +11,5 @@ def get_snr(record):
     g_fft = np.fft.fft([1 if i == 'G' else 0 for i in sequence_str])
     power_spectrum = np.abs(a_fft)**2 + np.abs(t_fft)**2 + np.abs(c_fft)**2 + np.abs(g_fft)**2
     signal = power_spectrum[round((len(power_spectrum)-1)/3)]
-    snr = np.log(signal/np.average(power_spectrum[1:]))
+    snr = signal/np.average(power_spectrum[1:])
     return snr
