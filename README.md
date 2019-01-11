@@ -71,5 +71,5 @@ GAPDH-201	1.0	7.53689712956617	6.9167150203536085	0.5376	1.2926	55.2579365079365
 - `hexamer_bias_distance`: Average difference between the value of the largest `hexamer_bias` among the reading frames and the values of the remaining two frames.
 - `protein_pi`: Isoelectric point of the protein translated from the longest ORF.
 - `codon_entropy`: Shannon entropy computed with the codon frequencies of the largest ORF. The values are scaled relative to the maximum possible entropy so that they fall into the [0,1] range.
-- `snr`: The signal-to-noise ratio in the ORF, as described by C. Pian et al. (2016). The Discrete Fourier Transform is used to detect a period-3 peak and the strength of the signal is computed by taking the ratio between the peak and the average power spectrum of the ORF.
+- `snr`: The signal-to-noise ratio in the ORF, as described by Yin, C. & Yau, S.S.T. (2007). The Discrete Fourier Transform is used to detect a period-3 peak and the strength of the signal is computed by taking the ratio between the peak and the average power spectrum of the ORF.
 - `hmmer_score`: Score of the first hit found by `hmmsearch` in the Pfam database. Uses the protein sequence translated from the longest ORF as the query for the search.
