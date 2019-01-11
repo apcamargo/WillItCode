@@ -19,9 +19,9 @@ def main(fasta_file, classification_model_file, hex_table_file, output_features,
                                                           classification_model,
                                                           hmmer_cpu=hmmer_cpu)
     if output_features:
-        columns = ('sequence_id\torf_integrity\tlog_sequence_length\tlog_orf_length\t'
+        columns = ('sequence_id\torf_integrity\tsequence_length\torf_length\t'
                    'orf_ratio\tfickett_score\tgc_content\tgc_bias\thexamer_bias\t'
-                   'hexamer_bias_distance\tprotein_pi\tcodon_entropy\tsnr\tlog_hmmer_score\t'
+                   'hexamer_bias_distance\tprotein_pi\tcodon_entropy\tsnr\thmmer_score\t'
                    'coding_probability\tprediction')
         matrix = np.column_stack((sequence_id_list, feature_matrix, prediction_proba,
                                   prediction_label))

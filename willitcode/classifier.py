@@ -24,7 +24,7 @@ def get_feature_matrix(fasta_file, hex_table, hmmer_cpu=1):
         sequence_id_list.append(record.id)
         (orf_record, orf_integrity) = get_orf_record(record)
         protein_record = get_protein_record(orf_record)
-        (record_log_sequence_length, record_log_orf_length,
+        (record_sequence_length, record_orf_length,
          record_orf_ratio) = get_lengths(record, orf_record)
         record_fickett_score = get_fickett_score(orf_record)
         record_gc_content, record_gc_bias = get_gc_content(orf_record)
@@ -33,8 +33,8 @@ def get_feature_matrix(fasta_file, hex_table, hmmer_cpu=1):
         record_codon_entropy = get_codon_entropy(orf_record)
         record_snr = get_snr(orf_record)
         protein_record_list.append(protein_record)
-        sequence_features_list.append([orf_integrity, record_log_sequence_length,
-                                       record_log_orf_length, record_orf_ratio,
+        sequence_features_list.append([orf_integrity, record_sequence_length,
+                                       record_orf_length, record_orf_ratio,
                                        record_fickett_score, record_gc_content, record_gc_bias,
                                        record_hexamer_bias, record_hexamer_bias_distance,
                                        record_protein_pi, record_codon_entropy, record_snr])

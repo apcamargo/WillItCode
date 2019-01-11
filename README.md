@@ -53,7 +53,7 @@ $ python willitcode_classify_fasta.py --output_file classification_result.tsv --
 The ouput of `willitcode_classify_fasta.py` contains the computed features and the classification of each transcript:
 
 ```
-sequence_id	orf_integrity	log_sequence_length	log_orf_length	orf_ratio	fickett_score	gc_content	gc_bias	hexamer_bias	hexamer_bias_distance	protein_pi	snr	log_hmmer_score	coding_probability	prediction
+sequence_id	orf_integrity	sequence_length	orf_length	orf_ratio	fickett_score	gc_content	gc_bias	hexamer_bias	hexamer_bias_distance	protein_pi	snr	hmmer_score	coding_probability	prediction
 HOTAIR-201	1.0	7.792348924113037	5.7745515455444085	0.1325898389095415	0.9457	60.74766355140187	5.607476635514018	0.07669675570903184	0.14526636980902713	11.83282470703125	0.9328568042965191	0.0	0.05229618772864342	Non-coding
 GAPDH-201	1.0	7.53689712956617	6.9167150203536085	0.5376	1.2926	55.257936507936506	7.142857142857146	0.2934898815462439	0.5006784307968564	8.56610107421875	3.3520498724216043	5.454038241544812	0.9477038383483887	Coding
 ```
@@ -61,8 +61,8 @@ GAPDH-201	1.0	7.53689712956617	6.9167150203536085	0.5376	1.2926	55.2579365079365
 ## Computed features
 
 - `orf_integrity`: Whether the longest ORF ends with a stop codon.
-- `log_sequence_length`: Log-transformed transcript length.
-- `log_orf_length`: Log-transformed longest ORF length.
+- `sequence_length`: Transcript length.
+- `orf_length`: Longest ORF length.
 - `orf_ratio`: Ratio between the longest ORF length and the transcript length.
 - `fickett_score`: Score computed using the ORF nucleotide composition, as described by J. W. Fickett (1982).
 - `gc_content`: GC content of the longest ORF.
@@ -72,4 +72,4 @@ GAPDH-201	1.0	7.53689712956617	6.9167150203536085	0.5376	1.2926	55.2579365079365
 - `protein_pi`: Isoelectric point of the protein translated from the longest ORF.
 - `codon_entropy`: Shannon entropy computed with the codon frequencies of the largest ORF. The values are scaled relative to the maximum possible entropy so that they fall into the [0,1] range.
 - `snr`: The signal-to-noise ratio in the ORF, as described by C. Pian et al. (2016). The Discrete Fourier Transform is used to detect a period-3 peak and the strength of the signal is computed by taking the ratio between the peak and the average power spectrum of the ORF.
-- `log_hmmer_score`: Log-transformed score of the first hit found by `hmmsearch` in the Pfam database. Uses the protein sequence translated from the longest ORF as the query for the search.
+- `hmmer_score`: Score of the first hit found by `hmmsearch` in the Pfam database. Uses the protein sequence translated from the longest ORF as the query for the search.

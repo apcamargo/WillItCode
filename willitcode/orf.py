@@ -1,4 +1,3 @@
-import numpy as np
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 
@@ -62,7 +61,5 @@ def get_orf_record(record, start_codon=None, stop_codon=None):
 def get_lengths(record, orf_record):
     sequence_length = len(record)
     orf_length = len(orf_record)
-    log_sequence_length = np.log1p(sequence_length)
-    log_orf_length = np.log1p(orf_length)
     orf_ratio = orf_length/sequence_length
-    return log_sequence_length, log_orf_length, orf_ratio
+    return sequence_length, orf_length, orf_ratio
