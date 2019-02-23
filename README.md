@@ -4,7 +4,7 @@ Compute the coding potential of RNA sequences.
 
 ## Overview
 
-WillItCode is tool to classify RNA sequences into protein-coding (mRNA) or non-coding (lncRNA). It computes a several features that describe sequence composition and similarity to protein domains and uses them to classify the transcripts using gradient boosted trees ([XGBoost](https://xgboost.readthedocs.io/)).
+WillItCode is tool to classify RNA sequences into protein-coding (mRNA) or non-coding (lncRNA). It computes a variety of sequence-derived features and searches for protein domains in the transcript sequence. This data is then used to classify RNA sequences using gradient boosted trees ([XGBoost](https://xgboost.readthedocs.io/)).
 
 ## Preparing the work environment
 
