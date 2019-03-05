@@ -47,9 +47,9 @@ def main(fasta_file, classification_model_file, hex_table_file, output_features,
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Classify sequences from a input FASTA file.')
     parser.add_argument('fasta_file',
-                        help='FASTA file containing complete sequences of protein-coding transcripts.')
+                        help='FASTA file containing transcripts that will be classified.')
     parser.add_argument('classification_model_file',
-                        help='FASTA file containing complete sequences of noncoding transcripts.')
+                        help='File containing a pre-trained WillItCode model.')
     parser.add_argument('hex_table_file',
                         help='Hexamer frequency table file.')
     parser.add_argument('--output_features',
