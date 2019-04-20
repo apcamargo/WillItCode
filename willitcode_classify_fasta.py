@@ -64,6 +64,6 @@ if __name__ == '__main__':
                         help='Number of parallel CPU to use for multithreads in HMMER.')
     if len(sys.argv) < 2:
         parser.print_help()
-        sys.exit(1)
+        sys.exit(0)
     args = parser.parse_args()
     main(**vars(args))
